@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - DIGIEXPO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Glitch Animation */
+    .glitch {
+      position: relative;
+      color: white;
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      animation: glitch 1s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .glitch::before {
+      animation: glitchTop 1s infinite;
+      color: #00ffe7;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 1.2s infinite;
+      color: #ff0057;
+    }
+
+    @keyframes glitch {
+      0% { transform: none; }
+      20% { transform: skew(-2deg, 0.6deg); }
+      40% { transform: skew(2deg, -0.6deg); }
+      60% { transform: none; }
+      100% { transform: none; }
+    }
+
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 85% 0); transform: translate(-2px, -2px); }
+      50% { clip-path: inset(0 0 30% 0); transform: translate(2px, 2px); }
+      100% { clip-path: inset(0 0 85% 0); transform: translate(-2px, -2px); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip-path: inset(85% 0 0 0); transform: translate(2px, 2px); }
+      50% { clip-path: inset(30% 0 0 0); transform: translate(-2px, -2px); }
+      100% { clip-path: inset(85% 0 0 0); transform: translate(2px, 2px); }
+    }
+
+    .popup-animate {
+      animation: popupFadeZoom 0.5s ease-in-out;
+    }
+
+    @keyframes popupFadeZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-black via-gray-900 to-blue-900 h-screen flex flex-col items-center justify-center text-center relative overflow-hidden">
+
+  <!-- Glowing Blurs -->
+  <div class="absolute w-72 h-72 bg-blue-500 opacity-20 rounded-full -top-24 -left-24 blur-3xl animate-pulse"></div>
+  <div class="absolute w-80 h-80 bg-pink-400 opacity-20 rounded-full -bottom-24 -right-24 blur-3xl animate-pulse"></div>
+
+  <!-- Main Card -->
+  <div class="relative z-10 bg-white/10 backdrop-blur-md shadow-2xl p-10 rounded-2xl max-w-md border border-white/20">
+    <h1 class="glitch mb-4" data-text="404">404</h1>
+    <p class="text-xl text-white font-semibold mb-2">Your Growth Not Found!</p>
+    <p class="text-gray-300 mb-6">But don’t worry, DIGIEXPO’s got your back 🚀</p>
+    <a href="#" id="fixBtn" class="bg-gradient-to-r from-pink-500 to-blue-500 text-white px-6 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-300 font-bold tracking-wide float">
+      Fix with DIGIEXPO
+    </a>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full text-center popup-animate relative">
+      <button id="closePopup" class="absolute top-2 right-3 text-gray-400 hover:text-black text-xl">&times;</button>
+      <h2 class="text-2xl font-bold mb-2 text-blue-700">Fix Detected! 🔧</h2>
+      <p class="text-gray-700 mb-4">Scan to solve all your technical problems with DIGIEXPO!</p>
+      <img 
+        src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.digiexpo.ae/mobile-app-development-company-dubai" 
+        alt="QR Code" 
+        class="mx-auto rounded-lg border-2 border-blue-500 shadow-lg hover:scale-105 transition duration-300"
+      />
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const btn = document.getElementById('fixBtn');
+    const popup = document.getElementById('popup');
+    const closeBtn = document.getElementById('closePopup');
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.classList.remove('hidden');
+      popup.classList.add('flex');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.classList.add('hidden');
+      popup.classList.remove('flex');
+    });
+  </script>
+
+</body>
+</html>
